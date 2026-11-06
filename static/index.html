@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioFouling.AI - Industrial Vision Pipeline</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230D9488'><path d='M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z'/></svg>">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Global Left Sidebar
+       ======================================================================== -->
+  <aside class="app-sidebar">
+    <div class="brand-header">
+      <div class="brand-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+      </div>
+      <div class="brand-title-wrap">
+        <div class="brand-title">BioFouling.AI</div>
+        <div class="brand-subtitle">AI Vision Pipeline</div>
+      </div>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="nav-item active" id="nav-dashboard" onclick="switchView('dashboard')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="9"></rect>
+          <rect x="14" y="3" width="7" height="5"></rect>
+          <rect x="14" y="12" width="7" height="9"></rect>
+          <rect x="3" y="16" width="7" height="5"></rect>
+        </svg>
+        <span>Dashboard</span>
+      </li>
+
+      <li class="nav-item" id="nav-queue" onclick="switchView('queue')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        <span>Review Queue</span>
+      </li>
+
+      <li class="nav-item" id="nav-mlops" onclick="switchView('mlops')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>MLOps Control</span>
+      </li>
+
+      <li class="nav-item" id="nav-logs" onclick="switchView('logs')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>History &amp; Logs</span>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-title">INFERENCE ENGINE</div>
+      <div class="sidebar-footer-stat">
+        <span class="status-indicator-dot"></span>
+        <span>ONNX Runtime Edge (v4)</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       Animated Background: Living Hydrodynamic Fluid Waves & Neural Sensor Nodes
+       ======================================================================== -->
+  <div class="animated-bg-container" id="animated-bg">
+    <div class="fluid-ribbon-wrap">
+      <div class="fluid-wave-ribbon wave-ribbon-1"></div>
+      <div class="fluid-wave-ribbon wave-ribbon-2"></div>
+      <div class="fluid-wave-ribbon wave-ribbon-3"></div>
+    </div>
+    <canvas id="neural-canvas"></canvas>
+  </div>
+
+  <main class="main-wrapper">
+
+    <!-- ====================================================================
+         VIEW 1: Live Inspection / Dashboard (node-id=3-2)
+         ==================================================================== -->
+    <section class="view-container active" id="view-dashboard">
+      <header class="screen-header">
+        <div class="header-text-group">
+          <h1 class="screen-title"><span class="title-dot">•</span> Live Inspection</h1>
+          <p class="screen-subtitle">Real-time deep learning pipeline for industrial biofouling severity assessment.</p>
+        </div>
+      </header>
+
+      <div class="inspection-grid">
+        <!-- Left Column: Upload & Frame Controls -->
+        <div class="inspection-card">
+          <!-- Drag & Drop Dropzone -->
+          <div class="dropzone-container" id="dropzone" onclick="document.getElementById('file-input').click()">
+            <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="handleFileSelected(event)">
+            <div class="dropzone-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+            </div>
+            <div class="dropzone-title">Drag &amp; drop industrial pipe / heat exchanger frame here</div>
+            <div class="dropzone-subtitle">or browse files (JPG, PNG, TIFF up to 25MB)</div>
+            <span class="dropzone-badge">Supports: JPG, PNG, TIFF (Max 25MB)</span>
+          </div>
+
+          <!-- Quick Sample Dataset Picker -->
+          <div class="sample-picker-wrap">
+            <span class="sample-picker-label">Quick Test Frames:</span>
+            <button class="sample-btn" onclick="loadSampleImage('Low')">Low Severity</button>
+            <button class="sample-btn" onclick="loadSampleImage('Moderate')">Moderate</button>
+            <button class="sample-btn active" onclick="loadSampleImage('High')">High Matrix</button>
+            <button class="sample-btn" onclick="loadSampleImage('Critical')">Critical EPS</button>
+          </div>
+
+          <!-- Image Preview Area -->
+          <div class="preview-container" id="preview-container">
+            <img src="/data/raw/High/bf_high_0001.jpg" alt="Selected Inspection Frame" class="preview-img" id="preview-img" onerror="this.src='/data/raw/Critical/bf_critical_0001.jpg'">
+            <button class="preview-close-btn" title="Remove frame" onclick="clearPreviewFrame()">✕</button>
+          </div>
+
+          <!-- Action Buttons Bar -->
+          <div class="action-buttons-row">
+            <button class="btn-primary" id="btn-run-inspection" onclick="runInspection()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+              </svg>
+              <span>Run Inspection</span>
+            </button>
+
+            <button class="btn-mint" onclick="resetFrame()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+              </svg>
+              <span>Reset Frame</span>
+            </button>
+
+            <button class="btn-outline" onclick="openDatasetModal()">
+              Browse Test Dataset 📁
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Results & Gating Diagnostics -->
+        <div class="results-card" id="results-card">
+          <!-- Predicted Severity Section -->
+          <div class="result-section">
+            <div class="result-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Predicted Severity
+            </div>
+            <div class="result-severity-row">
+              <div class="severity-title" id="res-severity" style="color: var(--text-muted);">Ready for Scan</div>
+              <div class="severity-pill-badge" id="res-ci-badge" style="background: #E2E8F0; color: #475569;">
+                ● Awaiting Frame
+              </div>
+            </div>
+          </div>
+
+          <!-- Confidence Score Section -->
+          <div class="result-section">
+            <div class="result-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Confidence Score
+            </div>
+            <div class="metric-value-row">
+              <div class="metric-big-num" id="res-confidence-val">--%</div>
+              <div class="metric-sub-val" id="res-threshold-text">Threshold: 75%</div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" id="res-confidence-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Shannon Entropy Section -->
+          <div class="result-section">
+            <div class="result-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              Shannon Entropy
+            </div>
+            <div class="metric-value-row">
+              <div class="metric-big-num" id="res-entropy-val">--</div>
+              <div class="metric-sub-val" id="res-entropy-grade">Awaiting Inference</div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill entropy" id="res-entropy-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Operational Gating Status Box -->
+          <div class="gating-verdict-box" id="res-verdict-box">
+            <div class="result-label" style="color: var(--mint-text);">Operational Gating Verdict</div>
+            <div class="verdict-header">
+              <div class="verdict-badge" id="res-verdict-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="res-verdict-title">System Ready</span>
+              </div>
+            </div>
+            <div class="verdict-desc" id="res-verdict-desc">
+              Select or drop an industrial inspection frame and click "Run Inspection" to execute the ONNX vision engine.
+            </div>
+          </div>
+
+          <!-- Prominent Explainable AI (XAI) Defect Diagnostic Box -->
+          <div class="xai-defect-card" id="res-defect-card">
+            <div class="xai-header">
+              <div class="xai-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span>Defect Diagnostic Analysis (XAI)</span>
+              </div>
+              <div class="corrosion-badge" id="res-corrosion-risk">MIC: Nominal</div>
+            </div>
+
+            <div class="xai-field-wrap">
+              <div class="xai-field-label">PRIMARY DETECTED DEFECT</div>
+              <div class="xai-primary-issue" id="res-primary-issue">
+                Awaiting frame evaluation...
+              </div>
+            </div>
+
+            <div class="xai-field-wrap">
+              <div class="xai-field-label">MODEL MORPHOLOGICAL REASONING</div>
+              <div class="xai-reasoning-text" id="res-reasoning-text">
+                Run inspection to generate explainable neural feature activations, biological matrix analysis, and microbially influenced corrosion (MIC) risk assessment.
+              </div>
+            </div>
+
+            <div class="xai-field-wrap">
+              <div class="xai-field-label">REQUIRED OPERATIONAL ACTION</div>
+              <div class="xai-action-text" id="res-action-text">
+                Remediation directives and chemical biocide dosing protocols will be synthesized upon prediction.
+              </div>
+            </div>
+
+            <div class="xai-report-action-row">
+              <button class="btn-pdf-export" id="btn-export-pdf" onclick="exportCurrentReportPDF()" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Export Official PDF Report</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Live Dynamic Inspections Gallery / Table on Dashboard -->
+      <div class="dashboard-history-section" style="margin-top: 36px;">
+        <div class="dashboard-history-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h2 class="section-title" style="font-size: 1.22rem; font-weight: 700; color: var(--navy-primary);">Recent Dynamic Inspections</h2>
+            <p class="section-subtitle" style="font-size: 0.85rem; color: var(--text-muted);">Real-time inspection records uploaded, processed, and stored in the database.</p>
+          </div>
+          <button class="btn-outline" onclick="switchView('logs')">
+            <span>View Full History &amp; Logs</span>
+            <span style="margin-left: 6px;">→</span>
+          </button>
+        </div>
+
+        <div class="table-card">
+          <!-- Empty State: Dynamic and Clean -->
+          <div class="empty-state-wrap" id="dashboard-empty-state" style="display: none;">
+            <div class="empty-state-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+            </div>
+            <div class="empty-state-title">No Inspections Found - Upload to Begin</div>
+            <div class="empty-state-desc">No visual inspections have been recorded yet. Drag &amp; drop an industrial frame above to run your first inspection.</div>
+          </div>
+
+          <table class="data-table" id="dashboard-inspections-table">
+            <thead>
+              <tr>
+                <th>Frame</th>
+                <th>Inspection ID</th>
+                <th>Predicted Severity</th>
+                <th>Confidence</th>
+                <th>XAI Primary Defect</th>
+                <th>Timestamp</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="dashboard-table-body">
+              <!-- Dynamically populated from GET /api/inspections -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 2: Inspection Review Queue (node-id=3-188)
+         ==================================================================== -->
+    <section class="view-container" id="view-queue">
+      <header class="screen-header">
+        <div class="header-text-group">
+          <h1 class="screen-title">Inspection Review Queue</h1>
+          <p class="screen-subtitle">Human-in-the-loop review queue for ambiguous and borderline severity inferences.</p>
+        </div>
+        <button class="btn-primary" onclick="fetchReviewQueue()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+          </svg>
+          <span>Refresh Queue</span>
+        </button>
+      </header>
+
+      <!-- 4 Top Metric Cards in a Row -->
+      <div class="metrics-row-4">
+        <div class="metric-card-stat">
+          <div class="metric-stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="metric-stat-info">
+            <div class="stat-big-val" id="queue-count-pending">0 Items</div>
+            <div class="stat-label-desc">Pending Review</div>
+          </div>
+        </div>
+
+        <div class="metric-card-stat">
+          <div class="metric-stat-icon" style="color: #EF4444; background: #FEE2E2; border-color: #FECACA;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="metric-stat-info">
+            <div class="stat-big-val" id="queue-count-critical">0 Critical</div>
+            <div class="stat-label-desc">High-Yield Biofouling</div>
+          </div>
+        </div>
+
+        <div class="metric-card-stat">
+          <div class="metric-stat-icon" style="color: #059669; background: #D1FAE5; border-color: #A7F3D0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="metric-stat-info">
+            <div class="stat-big-val" id="queue-count-approved">0 Verified</div>
+            <div class="stat-label-desc">Resolved Experts</div>
+          </div>
+        </div>
+
+        <div class="metric-card-stat">
+          <div class="metric-stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
+          </div>
+          <div class="metric-stat-info">
+            <div class="stat-big-val" id="queue-count-avg-conf">--%</div>
+            <div class="stat-label-desc">Avg Confidence</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Controls -->
+      <div class="filter-bar">
+        <div class="search-input-wrap">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="search-input" id="queue-search" placeholder="Search by asset ID, pipe location, technician..." onkeyup="filterQueueTable()">
+        </div>
+
+        <div class="filter-dropdowns">
+          <select class="select-filter" id="queue-status-filter" onchange="filterQueueTable()">
+            <option value="ALL">Status: All Status ▾</option>
+            <option value="PENDING_REVIEW">Pending Review</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+
+          <select class="select-filter" id="queue-sort-filter" onchange="sortQueueTable()">
+            <option value="OLDEST">Sort: Oldest First ▾</option>
+            <option value="NEWEST">Sort: Newest First ▾</option>
+            <option value="CONFIDENCE">Sort: Lowest Confidence ▾</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Data Table -->
+      <div class="table-card">
+        <!-- Empty State for Review Queue -->
+        <div class="empty-state-wrap" id="queue-empty-state" style="display: none;">
+          <div class="empty-state-icon" style="color: #059669; background: #D1FAE5; border-color: #A7F3D0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="empty-state-title">No Flagged Frames Pending Review</div>
+          <div class="empty-state-desc">All inspection frames have met operational confidence thresholds (&ge;75%) or have been verified by human specialists.</div>
+        </div>
+
+        <table class="data-table" id="queue-table">
+          <thead>
+            <tr>
+              <th>Preview</th>
+              <th>Queue ID</th>
+              <th>Predicted Class</th>
+              <th>File Name</th>
+              <th>Confidence</th>
+              <th>Entropy</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="queue-table-body">
+            <!-- Dynamically populated rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 3: Active Learning & Retraining Control Center (node-id=3-352)
+         ==================================================================== -->
+    <section class="view-container" id="view-mlops">
+      <header class="screen-header">
+        <div class="header-text-group">
+          <h1 class="screen-title"><span class="title-dot">•</span> Active Learning &amp; Retraining Control Center</h1>
+          <p class="screen-subtitle">Automated human-in-the-loop active learning and dynamic model retraining lifecycle.</p>
+        </div>
+      </header>
+
+      <!-- 3 Summary Metric Cards -->
+      <div class="metrics-row-3">
+        <div class="card-summary">
+          <div class="summary-title">REVIEWED SAMPLES AVAILABLE</div>
+          <div class="summary-val" id="mlops-samples-count">84</div>
+          <div class="summary-subtext highlight-green">Threshold for trigger: 50 - READY TO RETRAIN</div>
+        </div>
+
+        <div class="card-summary">
+          <div class="summary-title">MODEL DRIFT</div>
+          <div class="summary-val" id="mlops-drift-val">2.8%</div>
+          <div class="summary-subtext">Within acceptable variance range</div>
+        </div>
+
+        <div class="card-summary">
+          <div class="summary-title">VALIDATION ACCURACY</div>
+          <div class="summary-val" id="mlops-val-acc">86.2%</div>
+          <div class="summary-subtext">+1.8% since baseline model v4</div>
+        </div>
+      </div>
+
+      <!-- Retraining Configuration Card -->
+      <div class="config-card">
+        <div class="card-header-title">Retraining Configuration</div>
+        <div class="config-inputs-grid">
+          <div class="input-field-group">
+            <label class="input-label" for="cfg-epochs">EPOCHS</label>
+            <input type="number" class="custom-input" id="cfg-epochs" value="10" min="1" max="50">
+          </div>
+
+          <div class="input-field-group">
+            <label class="input-label" for="cfg-batch-size">BATCH SIZE</label>
+            <input type="number" class="custom-input" id="cfg-batch-size" value="16" min="1" max="128">
+          </div>
+
+          <div class="input-field-group">
+            <label class="input-label" for="cfg-lr">LEARNING RATE</label>
+            <input type="text" class="custom-input" id="cfg-lr" value="0.0001">
+          </div>
+        </div>
+
+        <div class="config-btn-row">
+          <button class="btn-primary" id="btn-trigger-retrain" onclick="triggerRetraining()">
+            ⚡ Trigger Active Retraining
+          </button>
+          <button class="btn-mint" onclick="checkRetrainStatus()">
+            ⟳ Check Retraining Status
+          </button>
+        </div>
+      </div>
+
+      <!-- Pipeline Status Horizontal Stepper Card -->
+      <div class="pipeline-card">
+        <div class="card-header-title">Pipeline Status</div>
+        <div class="stepper-horizontal">
+          <div class="step-pill completed" id="step-1">
+            ✓ Data Validation
+          </div>
+          <div class="step-pill active" id="step-2">
+            ● Fine-Tuning
+          </div>
+          <div class="step-pill queued" id="step-3">
+            Evaluation
+          </div>
+          <div class="step-pill queued" id="step-4">
+            Hot-Reload Deploy
+          </div>
+        </div>
+
+        <!-- Real-time Terminal Log Display -->
+        <div class="terminal-output-box" id="retrain-console">
+[ACTIVE LEARNING LOG] MLOps Pipeline Initialized.
+[DATASET CHECK] Found 84 verified human-in-the-loop expert labeled samples.
+[VALIDATION] Image dimensions 380x380 verified. Color guardrails strictly preserved.
+[ORCHESTRATOR] Ready for trigger: EfficientNet-B3 backbone target weights.
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 4: History & Dynamic Inspection Audit Logs (node-id=3-537)
+         ==================================================================== -->
+    <section class="view-container" id="view-logs">
+      <header class="screen-header">
+        <div class="header-text-group">
+          <h1 class="screen-title"><span class="title-dot">•</span> Inspection History &amp; Audit Logs</h1>
+          <p class="screen-subtitle">Real-time inspection database records, Explainable AI diagnostics, and audit trail.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-mint" onclick="fetchInspections()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+            </svg>
+            <span>Refresh</span>
+          </button>
+          <button class="btn-primary" onclick="exportAuditTrailCSV()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Export Audit Trail (CSV)</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- 3 Top Telemetry Metric Cards -->
+      <div class="metrics-row-3">
+        <div class="card-summary">
+          <div class="summary-title">TOTAL DATABASE INSPECTIONS</div>
+          <div class="summary-val" id="telemetry-inspections-count">0</div>
+          <div class="summary-subtext">Persisted across system lifecycles</div>
+        </div>
+
+        <div class="card-summary">
+          <div class="summary-title">AUTOMATED DECISION RATE</div>
+          <div class="summary-val" id="telemetry-auto-rate">--%</div>
+          <div class="summary-subtext" id="telemetry-auto-desc">Gating safety compliant</div>
+        </div>
+
+        <div class="card-summary">
+          <div class="summary-title">ONNX INFERENCE ENGINE</div>
+          <div class="summary-val" id="telemetry-engine-status" style="color: #059669;">ACTIVE</div>
+          <div class="summary-subtext">380x380 Native Diagnostics</div>
+        </div>
+      </div>
+
+      <!-- Audit Log Table Card -->
+      <div class="table-card">
+        <div style="padding: 20px 22px; border-bottom: 1px solid var(--mint-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div class="card-header-title" style="font-size: 1.05rem;">Inspection History Records</div>
+            <div class="screen-subtitle" style="font-size: 0.82rem; margin-top: 2px;">Comprehensive database of all user-uploaded and processed inspections with XAI defect reasoning.</div>
+          </div>
+          <div style="width: 280px;">
+            <input type="text" class="search-input" id="audit-search" placeholder="Search ID, file, severity..." onkeyup="filterAuditTable()">
+          </div>
+        </div>
+
+        <!-- Empty State Component -->
+        <div class="empty-state-wrap" id="audit-empty-state" style="display: none;">
+          <div class="empty-state-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div class="empty-state-title">No Inspections Found - Upload to Begin</div>
+          <div class="empty-state-desc">The inspection database is currently empty. Upload and run visual inspections to track defects and generate automated audit logs.</div>
+          <button class="btn-primary" onclick="switchView('dashboard')" style="margin-top: 14px;">Upload Inspection Frame</button>
+        </div>
+
+        <table class="data-table" id="audit-data-table">
+          <thead>
+            <tr>
+              <th>Preview</th>
+              <th>Inspection ID</th>
+              <th>Timestamp</th>
+              <th>Filename</th>
+              <th>Severity</th>
+              <th>Confidence</th>
+              <th>XAI Primary Defect</th>
+              <th>Gating Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="audit-table-body">
+            <!-- Populated dynamically from GET /api/inspections -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       Human Review Modal Dialog
+       ======================================================================== -->
+  <div class="modal-backdrop" id="review-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Human Expert Verification</div>
+        <button class="modal-close-btn" onclick="closeReviewModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <img src="" alt="Review Preview" class="modal-img-preview" id="modal-img">
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
+          <div><strong>Asset / Queue ID:</strong> <span id="modal-asset-id">-</span></div>
+          <div><strong>Inference:</strong> <span id="modal-predicted">-</span> (<span id="modal-confidence">-</span>)</div>
+        </div>
+        <div class="input-field-group">
+          <label class="input-label" for="modal-label-select">Assign Ground Truth Severity</label>
+          <select class="custom-input" id="modal-label-select">
+            <option value="Low">Low - Pristine Surface / Minimal Biofilm</option>
+            <option value="Moderate">Moderate - Early Biofilm / Patchy Algae</option>
+            <option value="High">High - Thick Biofilm Matrix / Slime</option>
+            <option value="Critical">Critical - Mature Biofilm / Sloughing Clumps</option>
+          </select>
+        </div>
+        <div class="input-field-group">
+          <label class="input-label" for="modal-notes">Expert Inspection Notes</label>
+          <input type="text" class="custom-input" id="modal-notes" placeholder="e.g. Verified early patchy colonization on heat exchanger shell.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeReviewModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitReviewResolution()">Confirm &amp; Resolve</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Delete Inspection Confirmation Modal Dialog
+       ======================================================================== -->
+  <div class="modal-backdrop" id="delete-modal">
+    <div class="modal-content modal-danger">
+      <div class="modal-header">
+        <div class="modal-title" style="color: #ef4444; display: flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+          Permanently Delete Inspection?
+        </div>
+        <button class="modal-close-btn" onclick="closeDeleteModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 12px; color: var(--text-main); font-size: 0.98rem;">
+          Are you sure you want to permanently delete inspection <strong id="delete-target-id" style="color: var(--navy-primary); font-family: monospace;">-</strong>?
+        </p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; background: #FEF2F2; padding: 12px; border-radius: 8px; border: 1px solid #FEE2E2;">
+          <strong>Warning:</strong> This will delete the inspection record from the database and permanently remove the archived frame from server storage. This action is irreversible.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn-danger" id="btn-confirm-delete" onclick="executeDeleteInspection()">
+          <span>Delete Record &amp; Storage</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Official Inspection PDF Report Modal Dialog
+       ======================================================================== -->
+  <div class="modal-backdrop" id="pdf-report-modal">
+    <div class="modal-content modal-report">
+      <div class="modal-header print-hide">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          Official Inspection &amp; Defect Diagnostic Report
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-primary" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Print / Save as PDF</span>
+          </button>
+          <button class="modal-close-btn" onclick="closeReportModal()">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body printable-report-content" id="printable-report-body">
+        <!-- Printable Report Markup populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
+

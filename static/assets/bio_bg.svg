@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Gradients for fluid hydrodynamic ribbons -->
+    <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.14" />
+      <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.12" />
+    </linearGradient>
+    <linearGradient id="waveGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.12" />
+      <stop offset="60%" stop-color="#2DD4BF" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.08" />
+    </linearGradient>
+    <linearGradient id="waveGrad3" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#5EEAD4" stop-opacity="0.2" />
+      <stop offset="70%" stop-color="#0D9488" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0369A1" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+  </defs>
+
+  <!-- Base background glow -->
+  <rect width="100%" height="100%" fill="#F7FCFC" />
+
+  <!-- Fluid Ribbon 1 -->
+  <path d="M-100,520 C250,420 500,640 850,560 C1200,480 1450,580 1700,510 L1700,750 C1450,820 1150,680 800,730 C450,780 200,650 -100,700 Z" fill="url(#waveGrad1)" filter="url(#blurFilter)" />
+
+  <!-- Fluid Ribbon 2 -->
+  <path d="M-50,600 C300,530 650,680 1000,590 C1350,500 1550,620 1750,580 L1750,850 C1400,880 1100,760 750,820 C400,880 150,780 -50,830 Z" fill="url(#waveGrad2)" filter="url(#blurFilter)" />
+
+  <!-- Fluid Ribbon 3 -->
+  <path d="M-80,450 C350,380 700,520 1100,440 C1400,380 1600,480 1720,430 L1720,620 C1400,660 1100,550 780,610 C450,670 150,540 -80,590 Z" fill="url(#waveGrad3)" filter="url(#blurFilter)" />
+
+  <!-- Floating Molecular / Biosensor Neural Network Nodes -->
+  <g opacity="0.38" stroke="#0D9488" stroke-width="1.2">
+    <!-- Connecting network lines -->
+    <line x1="880" y1="320" x2="960" y2="280" />
+    <line x1="960" y1="280" x2="1050" y2="340" />
+    <line x1="1050" y1="340" x2="1140" y2="300" />
+    <line x1="1140" y1="300" x2="1220" y2="380" />
+    <line x1="960" y1="280" x2="1000" y2="210" />
+    <line x1="1050" y1="340" x2="1080" y2="440" />
+    <line x1="1140" y1="300" x2="1280" y2="270" />
+    <line x1="1220" y1="380" x2="1340" y2="360" />
+    <line x1="1080" y1="440" x2="1190" y2="470" />
+    <line x1="1190" y1="470" x2="1220" y2="380" />
+    <line x1="1280" y1="270" x2="1390" y2="310" />
+    <line x1="1340" y1="360" x2="1440" y2="410" />
+    <line x1="1390" y1="310" x2="1440" y2="410" />
+
+    <line x1="280" y1="720" x2="360" y2="680" />
+    <line x1="360" y1="680" x2="450" y2="740" />
+    <line x1="450" y1="740" x2="540" y2="700" />
+    <line x1="540" y1="700" x2="620" y2="780" />
+    <line x1="360" y1="680" x2="400" y2="610" />
+    <line x1="450" y1="740" x2="480" y2="840" />
+
+    <line x1="1350" y1="720" x2="1420" y2="680" />
+    <line x1="1420" y1="680" x2="1510" y2="740" />
+    <line x1="1510" y1="740" x2="1560" y2="810" />
+  </g>
+
+  <!-- Node Dots with soft radial glow -->
+  <g fill="#0D9488">
+    <circle cx="880" cy="320" r="4.5" opacity="0.6" />
+    <circle cx="960" cy="280" r="6" opacity="0.8" fill="#14B8A6" />
+    <circle cx="1000" cy="210" r="4" opacity="0.5" />
+    <circle cx="1050" cy="340" r="7" opacity="0.75" fill="#06B6D4" />
+    <circle cx="1080" cy="440" r="5" opacity="0.6" />
+    <circle cx="1140" cy="300" r="6" opacity="0.7" fill="#2DD4BF" />
+    <circle cx="1190" cy="470" r="4.5" opacity="0.5" />
+    <circle cx="1220" cy="380" r="8" opacity="0.85" fill="#0D9488" />
+    <circle cx="1280" cy="270" r="5" opacity="0.6" fill="#10B981" />
+    <circle cx="1340" cy="360" r="6" opacity="0.7" fill="#14B8A6" />
+    <circle cx="1390" cy="310" r="4" opacity="0.5" />
+    <circle cx="1440" cy="410" r="7" opacity="0.75" fill="#0284C7" />
+
+    <circle cx="280" cy="720" r="4" opacity="0.5" />
+    <circle cx="360" cy="680" r="6" opacity="0.7" fill="#14B8A6" />
+    <circle cx="400" cy="610" r="4" opacity="0.5" />
+    <circle cx="450" cy="740" r="6.5" opacity="0.75" fill="#06B6D4" />
+    <circle cx="480" cy="840" r="5" opacity="0.5" />
+    <circle cx="540" cy="700" r="6" opacity="0.7" fill="#2DD4BF" />
+    <circle cx="620" cy="780" r="7" opacity="0.8" fill="#0D9488" />
+
+    <circle cx="1350" cy="720" r="5" opacity="0.6" />
+    <circle cx="1420" cy="680" r="6" opacity="0.7" fill="#14B8A6" />
+    <circle cx="1510" cy="740" r="6.5" opacity="0.7" fill="#06B6D4" />
+    <circle cx="1560" cy="810" r="5" opacity="0.6" fill="#0D9488" />
+  </g>
+</svg>

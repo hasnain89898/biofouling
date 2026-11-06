@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: biofouling_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: biofouling_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d biofouling_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  biofouling-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: biofouling-api:v4.0.0
+    container_name: biofouling_assessment_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount persistent Human-in-the-Loop (HITL) review queue image thumbnails
+      - ./data/review_queue_images:/app/data/review_queue_images
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PORT=8000
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/biofouling_db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  postgres_data:

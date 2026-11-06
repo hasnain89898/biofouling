@@ -1,0 +1,50 @@
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# Testing & Pytest Cache
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Editor & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Runtime SQLite Database & Dynamic Inspection Uploads
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/uploads/*
+!data/uploads/.gitkeep
+data/review_queue_images/*
+!data/review_queue_images/.gitkeep
+
+# Logs & Temporary Files
+*.log
+*.tmp
+*.bak
+
+# Redundant Training Checkpoint Backups & Test Exports
+checkpoints/*_backup_*.pth
+checkpoints/test_export.onnx
+checkpoints/*.onnx

@@ -1,0 +1,32 @@
+# Git & Version Control
+.git
+.gitignore
+
+# Python & Environment
+.venv
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local IDEs & System
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary Artifacts
+*.log
+*.tmp
+*.bak
+
+# Dataset caches (keep splits and metadata)
+data/raw/
+data/expanded/
